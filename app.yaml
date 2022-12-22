@@ -1,0 +1,26 @@
+runtime: nodejs16
+
+handlers:
+# Matches requests to /images/... to files in static/images/...
+  # This handler routes all requests not caught above to your main app. It is
+  # required when static routes are defined, but can be omitted (along with
+  # the entire handlers section) when there are no static files defined.
+- url: /(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+
+- url: /.*
+  static_files: frontend/public/index.html
+  upload: frontend/public/index.html
+  # script: auto
+
+#   runtime: nodejs16
+# handlers:
+#   # Serve all static files with url ending with a file extension
+#   - url: /(.*\..+)$
+#     static_files: build/\1
+#     upload: build/(.*\..+)$
+#   # Catch all handler to index.html
+#   - url: /.*
+#     static_files: build/index.html
+#     upload: build/index.html
